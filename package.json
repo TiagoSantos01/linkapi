@@ -1,0 +1,25 @@
+{
+  "name": "linkapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+   "start":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiagoSantos01/linkapi.git"
+  },
+  "author": "Tiago Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiagoSantos01/linkapi/issues"
+  },
+  "homepage": "https://github.com/TiagoSantos01/linkapi#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.8",
+    "pipedrive": "^10.4.3"
+  }
+}
