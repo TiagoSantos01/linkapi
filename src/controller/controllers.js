@@ -15,7 +15,7 @@ module.exports = {
                     value: dados.value,
                     products_count: dados.products_count
                 });
-                console.log(retorno)
+                retorno.then((result) => { console.log(result) }).catch(err=>{console.log(err)});
                 break;
 
             default:
