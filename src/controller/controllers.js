@@ -18,7 +18,7 @@ module.exports = {
                 if (err && !proximo.match(/\-s$/))
                     return res.send({ status: false, cmd: proximo });
                 else 
-                exc_comando(comando, fn());
+                exc_comando(comando, fn);
             });
         }
         exc_comando(lista_de_comando, () => {
