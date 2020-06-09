@@ -6,19 +6,33 @@ module.exports = {
     async deal_update(req, res) {
         let dados = req.body.current;
         //  banco.DB_insert("vendas", 1);
-        retorno = banco.Db_negocios_insert({
-            id: dados.id,
-            title: dados.status,
-            value: dados.value,
-            products_count: dados.products_count
-        });
-        retorno.then((result) => { console.log(result) }).catch(err=>{console.log(err)});
+
         switch (dados.status) {
             case "open":
+                retorno = banco.Db_negocios_insert({
+                    id: dados.id,
+                    title: dados.title,
+                    status: dados.status,
+                    value: dados.value,
+                    products_count: dados.products_count
+                });
+                retorno
+                    .then((result) => {
+                        req.send({ success: true, result: result })
+                    })
+                    .catch(err => {
+                        req.send({ success: false, error: err })
+                    });
 
-              
                 break;
-
+            case "won":
+                retorno = banco.Db_negocios_update({id:dados.id},{
+                    title: dados.title,
+                    status: dados.status,
+                    value: dados.value,
+                    products_count: dados.products_count
+                })
+                break;
             default:
                 break;
         }
