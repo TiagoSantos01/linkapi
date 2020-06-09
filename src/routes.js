@@ -5,6 +5,7 @@ const routes = require("express").Router(),
 routes.get('/', jsonParser, (req, res) => { return res.send("ON") })
 
 //  POST
+routes.post('/deal/update',jsonParser, controllers.deal_update);
 routes.post('/gitpull', jsonParser, controllers.git);
 
 module.exports = routes;
