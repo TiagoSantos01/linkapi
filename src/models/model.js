@@ -7,7 +7,7 @@ module.exports = {
             return true
            // return { err, result }
         })
-        console.log(t);
+        console.log("foi",t);
         
     }
 }
