@@ -1,10 +1,11 @@
 module.exports = {
 
 
-    async DB_insert(table,date){
-        let banco=global.banco;
-        banco.collection("vendas").insert({id:1},(err,result)=>{
-    console.log(result)
-})
+    async Db_negocios_insert(data) {
+        let banco = global.banco;
+         banco.collection("negocios").insert(data, (err, result) => {
+            return true
+           // return { err, result }
+        })
     }
 }
