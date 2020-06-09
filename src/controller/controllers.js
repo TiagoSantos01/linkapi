@@ -6,16 +6,17 @@ module.exports = {
     async deal_update(req, res) {
         let dados = req.body.current;
         //  banco.DB_insert("vendas", 1);
+        retorno = banco.Db_negocios_insert({
+            id: dados.id,
+            title: dados.status,
+            value: dados.value,
+            products_count: dados.products_count
+        });
+        retorno.then((result) => { console.log(result) }).catch(err=>{console.log(err)});
         switch (dados.status) {
             case "open":
 
-                retorno = banco.Db_negocios_insert({
-                    id: dados.id,
-                    title: dados.status,
-                    value: dados.value,
-                    products_count: dados.products_count
-                });
-                retorno.then((result) => { console.log(result) }).catch(err=>{console.log(err)});
+              
                 break;
 
             default:
