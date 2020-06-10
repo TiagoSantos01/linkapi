@@ -7,7 +7,7 @@ module.exports = {
         let dados = req.body.current;
         switch (dados.status) {
             case "open":
-                retorno = await banco.Db_negocios_insert({
+                await banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
                     status: dados.status,
@@ -15,10 +15,10 @@ module.exports = {
                     products_count: dados.products_count
                 })
                     .then((result) => {
-                      return res.send({ success: true, result: result })
+                        return res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                        return  res.send({ success: false, error: err })
+                        return res.send({ success: false, error: err })
                     });
 
                 break;
