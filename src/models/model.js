@@ -15,5 +15,16 @@ module.exports = {
             return banco.collection("negocios").update(datawhere, data)
 
     }
+    ,
+    async Db_produtos_Insert_List(dados) {
+        let banco = global.banco;
+        dados.forEach(data => {
+            retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
+            if (!retorno)
+            banco.collection("produtos").insertOne(data)
+            else
+            banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id },data);
+        });
+    }
 
 }
