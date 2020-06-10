@@ -4,6 +4,7 @@ pipe.Configuration.apiToken = "83f409a0ac6fb301aa218884a3cacb9e1940a591";
 
 module.exports = {
     async deal_update(req, res) {
+        console.log(req.body);
         let dados = req.body.current;
         switch (dados.status) {
             case  "open":
