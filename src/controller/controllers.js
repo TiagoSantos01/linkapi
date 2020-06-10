@@ -7,7 +7,7 @@ module.exports = {
         let dados = req.body.current;
         switch (dados.status) {
             case "open":
-                retorno = await banco.Db_negocios_insert({
+                retorno = banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
                     status: dados.status,
@@ -16,10 +16,10 @@ module.exports = {
                 });
                 retorno
                     .then((result) => {
-                       return res.send({ success: true, result: result })
+                     //  return res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                        return  res.send({ success: false, error: err })
+                        //return  res.send({ success: false, error: err })
                     });
 
                 break;
@@ -42,7 +42,7 @@ module.exports = {
             default:
                 break;
         }
-       // return res.send({ status: true });
+        return res.send({ status: true });
     },
     async deal_delete(req, res) {
         let dados = req.body.current;
