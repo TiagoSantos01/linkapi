@@ -9,7 +9,7 @@ module.exports = {
             case "open":
               
                 await banco.Db_negocios_insert({
-                    _id: dados.id,
+                    id: dados.id,
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
@@ -24,7 +24,7 @@ module.exports = {
 
                 break;
             case "won":
-                retorno = banco.Db_negocios_update({ _id: dados.id }, {
+                retorno = banco.Db_negocios_update({ id: dados.id }, {
                    
                     title: dados.title,
                     status: dados.status,
