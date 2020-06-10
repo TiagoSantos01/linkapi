@@ -6,17 +6,18 @@ module.exports = {
 
         console.log("tempo1", new Date())
 
-        retorno =await  banco.collection("negocios").findOne({ id: data.id },(err,result)=>{
-            await console.log("tempo2", new Date())
+        return banco.collection("negocios").findOne({ id: data.id },(err,result)=>{
+            
+             console.log("tempo2", new Date())
 
             if (result == null) {
-                await console.log("tempo3", new Date())
+                 console.log("tempo3", new Date())
     
                 return banco.collection("negocios").insertOne(data);
             } else
                 return Db_negocios_update({ id: data.id }, data)
         });
-        return retorno
+        
         
     },
     async Db_negocios_update(datawhere, data) {
