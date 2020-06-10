@@ -7,7 +7,7 @@ module.exports = {
         let dados = req.body.current;
         switch (dados.status) {
             case "open":
-              
+                console.log("tempo", new Date())
                  banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
