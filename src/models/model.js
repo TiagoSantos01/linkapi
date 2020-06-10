@@ -24,6 +24,7 @@ module.exports = {
             banco.collection("produtos").insertOne(data)
             else
             banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id },data);
+            console.log(data);
         });
     }
 
