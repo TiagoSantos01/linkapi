@@ -17,8 +17,8 @@ module.exports = {
         if (retorno == null)
             return Db_negocios_insert(data)
         else
-            teste=await banco.collection("negocios").updateOne({ datawhere }, { data })
-            console.log(teste); 
+            teste=await banco.collection("negocios").update({ datawhere }, { data })
+            console.log("foi",teste); 
             return "foi"
     }
 
