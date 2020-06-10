@@ -48,7 +48,7 @@ module.exports = {
     },
     async deal_delete(req, res) {
         let dados = req.body.current;
-
+        console.log(dados);
     },
     async git(req, res) {
         let exec = require('child_process').exec;
