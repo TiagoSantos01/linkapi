@@ -5,7 +5,6 @@ pipe.Configuration.apiToken = "83f409a0ac6fb301aa218884a3cacb9e1940a591";
 module.exports = {
     async deal_update(req, res) {
         let dados = req.body.current;
-        //  banco.DB_insert("vendas", 1);
 
         switch (dados.status) {
             case "open":
@@ -27,6 +26,7 @@ module.exports = {
                 break;
             case "won":
                 retorno = banco.Db_negocios_update({id:dados.id},{
+                    id:dados.id,
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
