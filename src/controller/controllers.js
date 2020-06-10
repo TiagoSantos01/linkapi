@@ -6,7 +6,7 @@ module.exports = {
     async deal_update(req, res) {
         let dados = req.body.current;
         switch (dados.status) {
-            case await "open":
+            case  "open":
                 console.log("tempo", new Date())
                  await banco.Db_negocios_insert({
                     id: dados.id,

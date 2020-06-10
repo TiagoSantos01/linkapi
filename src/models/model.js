@@ -7,10 +7,10 @@ module.exports = {
         console.log("tempo1", new Date())
 
         retorno =await  banco.collection("negocios").findOne({ id: data.id },(err,result)=>{
-            console.log("tempo2", new Date())
+            await console.log("tempo2", new Date())
 
             if (result == null) {
-                console.log("tempo3", new Date())
+                await console.log("tempo3", new Date())
     
                 return banco.collection("negocios").insertOne(data);
             } else
