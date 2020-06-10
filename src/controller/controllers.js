@@ -25,7 +25,7 @@ module.exports = {
                 break;
             case "won":
                 retorno = banco.Db_negocios_update({ _id: dados.id }, {
-                    _id: dados.id,
+                   
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
