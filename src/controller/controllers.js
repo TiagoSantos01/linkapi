@@ -36,6 +36,7 @@ module.exports = {
                         })
                         retorno
                             .then(async (result) => {
+                                console.log("foi")
                                 controller = pipe.DealsController;
                                 produtos = await controller.listProductsAttachedToADeal(dados.id)
                                 console.log(produtos);
