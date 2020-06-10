@@ -25,13 +25,20 @@ module.exports = {
 
                 break;
             case "won":
-                retorno = banco.Db_negocios_update({id:dados.id},{
-                    id:dados.id,
+                retorno = banco.Db_negocios_update({ id: dados.id }, {
+                    id: dados.id,
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
                     products_count: dados.products_count
                 })
+                retorno
+                    .then((result) => {
+                        res.send({ success: true, result: result })
+                    })
+                    .catch(err => {
+                        res.send({ success: false, error: err })
+                    });
                 break;
             default:
                 break;
