@@ -25,24 +25,55 @@ module.exports = {
 
                 break;
             case "updated":
-                retorno = banco.Db_negocios_update({ id: dados.id }, {
-                    id: dados.id,
-                    title: dados.title,
-                    status: dados.status,
-                    value: dados.value,
-                    add_time: dados.add_time,
-                    update_time: dados.update_time
-                })
-                retorno
-                    .then((result) => {
-                        if(dados.status=="won")
-                            console.log("foi")
-                        
-                        res.send({ success: true, result: result })
-                    })
-                    .catch(err => {
-                        res.send({ success: false, error: err })
-                    });
+                switch (dados.status) {
+                    case "won":
+                        retorno = banco.Db_negocios_update({ id: dados.id }, {
+                            id: dados.id,
+                            title: dados.title,
+                            status: dados.status,
+                            value: dados.value,
+                            add_time: dados.add_time,
+                            update_time: dados.update_time
+                        })
+                        retorno
+                            .then((result) => {
+                                controller = pipe.DealsController;
+                                produtos = await controller.listProductsAttachedToADeal(dados.id)
+                                console.log(produtos);
+                                res.send({ success: true, result: result })
+                            })
+                            .catch(err => {
+                                res.send({ success: false, error: err })
+                            });
+                        break;
+                    case "lost":
+                        retorno = banco.Db_negocios_update({ id: dados.id }, {
+                            id: dados.id,
+                            title: dados.title,
+                            status: dados.status,
+                            value: dados.value,
+                            add_time: dados.add_time,
+                            update_time: dados.update_time,
+                            lost_reason: dados.lost_reason,
+                            lost_time: dados.lost_time
+                        })
+                        retorno
+                            .then((result) => {
+
+                                res.send({ success: true, result: result })
+                            })
+                            .catch(err => {
+                                res.send({ success: false, error: err })
+                            });
+                        break;
+                    case "open":
+
+                        break;
+
+                    default:
+                        break;
+                }
+
                 break;
             default:
                 break;
