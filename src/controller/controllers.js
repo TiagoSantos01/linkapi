@@ -6,22 +6,20 @@ module.exports = {
     async deal_update(req, res) {
         let dados = req.body.current;
         switch (req.body.meta.action) {
-            case  "added":
-                 await banco.Db_negocios_insert({
+            case "added":
+                await banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
                     products_count: dados.products_count,
-                    add_time:dados.add_time,
-                    update_time:dados.update_time
+                    add_time: dados.add_time,
+                    update_time: dados.update_time
                 })
                     .then((result) => {
-                        console.log(result)
                         return res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                        console.log(err)
                         return res.send({ success: false, error: err })
                     });
 
@@ -33,15 +31,14 @@ module.exports = {
                     status: dados.status,
                     value: dados.value,
                     products_count: dados.products_count,
-                    update_time:dados.update_time
+                    add_time: dados.add_time,
+                    update_time: dados.update_time
                 })
                 retorno
                     .then((result) => {
-                                                console.log(result)
                         res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                                                console.log(err)
                         res.send({ success: false, error: err })
                     });
                 break;
