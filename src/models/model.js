@@ -12,6 +12,7 @@ module.exports = {
     async Db_negocios_update(datawhere, data) {
         let banco = global.banco;
         retorno = await banco.collection("negocios").findOne({ _id: data._id });
+        console.log(retorno);
         if (retorno == null)
             return Db_negocios_insert(data)
         else
