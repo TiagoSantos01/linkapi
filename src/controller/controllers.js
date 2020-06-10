@@ -4,7 +4,6 @@ pipe.Configuration.apiToken = "83f409a0ac6fb301aa218884a3cacb9e1940a591";
 
 module.exports = {
     async deal_update(req, res) {
-        console.log(req.body);
         let dados = req.body.current;
         switch (req.body.meta.action) {
             case  "added":
@@ -34,7 +33,6 @@ module.exports = {
                     status: dados.status,
                     value: dados.value,
                     products_count: dados.products_count,
-                    add_time:dados.add_time,
                     update_time:dados.update_time
                 })
                 retorno
