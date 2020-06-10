@@ -13,7 +13,9 @@ module.exports = {
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
-                    products_count: dados.products_count
+                    products_count: dados.products_count,
+                    add_time:dados.add_time,
+                    update_time:dados.update_time
                 })
                     .then((result) => {
                         console.log(result)
@@ -31,7 +33,9 @@ module.exports = {
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
-                    products_count: dados.products_count
+                    products_count: dados.products_count,
+                    add_time:dados.add_time,
+                    update_time:dados.update_time
                 })
                 retorno
                     .then((result) => {
