@@ -11,7 +11,7 @@ module.exports = {
     },
     async Db_negocios_update(datawhere, data) {
         let banco = global.banco;
-        return banco.collection("negocios").update({ datawhere }, { data })
+        return banco.collection("negocios").updateOne({ datawhere }, { data })
     }
 
 }
