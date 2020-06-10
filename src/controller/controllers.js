@@ -43,7 +43,7 @@ module.exports = {
             default:
                 break;
         }
-        return res.send({ status: true });
+       // return res.send({ status: true });
     },
     async deal_delete(req, res) {
         let dados = req.body.current;
