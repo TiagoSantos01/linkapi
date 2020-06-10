@@ -4,7 +4,7 @@ module.exports = {
     async  Db_negocios_insert(data) {
         let banco = global.banco;
  await setTimeout(() => {
-            console.log("tempo")
+            console.log("tempo",new Date())
         }, 5000);
         retorno = await banco.collection("negocios").findOne({ id: data.id });
        
