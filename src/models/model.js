@@ -6,7 +6,7 @@ module.exports = {
 
         console.log("tempo1", new Date())
 
-        retorno =  banco.collection("negocios").findOne({ id: data.id },(err,result)=>{
+        retorno =await  banco.collection("negocios").findOne({ id: data.id },(err,result)=>{
             console.log("tempo2", new Date())
 
             if (result == null) {
@@ -16,6 +16,7 @@ module.exports = {
             } else
                 return Db_negocios_update({ id: data.id }, data)
         });
+        return retorno
         
     },
     async Db_negocios_update(datawhere, data) {
