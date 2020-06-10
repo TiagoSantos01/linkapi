@@ -5,6 +5,7 @@ pipe.Configuration.apiToken = "83f409a0ac6fb301aa218884a3cacb9e1940a591";
 module.exports = {
     async deal_update(req, res) {
         let dados = req.body.current;
+        console.log(req.body);
         switch (req.body.meta.action) {
             case "added":
                 await banco.Db_negocios_insert({
@@ -34,7 +35,9 @@ module.exports = {
                 })
                 retorno
                     .then((result) => {
-                        console.log(result)
+                        if(dados.status=="won")
+                            console.log("foi")
+                        
                         res.send({ success: true, result: result })
                     })
                     .catch(err => {
