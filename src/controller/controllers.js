@@ -38,7 +38,7 @@ module.exports = {
                             .then(async (result) => {
                                 console.log("foi")
                                 controller = pipe.DealsController;
-                                produtos = await controller.listProductsAttachedToADeal(dados.id)
+                                produtos =  controller.listProductsAttachedToADeal(dados.id)
                                produtos.then((a,b)=>console.log(a,b))
                                 console.log(produtos);
                                 res.send({ success: true, result: result })
