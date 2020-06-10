@@ -35,7 +35,7 @@ module.exports = {
                             update_time: dados.update_time
                         })
                         retorno
-                            .then((result) => {
+                            .then(async (result) => {
                                 controller = pipe.DealsController;
                                 produtos = await controller.listProductsAttachedToADeal(dados.id)
                                 console.log(produtos);
