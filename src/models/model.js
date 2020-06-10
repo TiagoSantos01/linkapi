@@ -12,7 +12,7 @@ module.exports = {
         let banco = global.banco;
         retorno = await banco.collection("negocios").findOne(datawhere)
         if (retorno)
-            return banco.collection("negocios").update(datawhere, data)
+            return banco.collection("negocios").updateOne(datawhere, data)
 
     }
 
