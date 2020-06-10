@@ -4,13 +4,13 @@ module.exports = {
     async  Db_negocios_insert(data) {
         let banco = global.banco;
 
-        console.log("tempo", new Date())
+        console.log("tempo1", new Date())
 
         retorno = await banco.collection("negocios").findOne({ id: data.id });
-        console.log("tempo", new Date())
+        console.log("tempo2", new Date())
 
         if (retorno == null) {
-            console.log("tempo", new Date())
+            console.log("tempo3", new Date())
 
             return banco.collection("negocios").insertOne(data);
         } else
