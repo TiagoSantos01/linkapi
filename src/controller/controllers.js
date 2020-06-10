@@ -7,7 +7,7 @@ module.exports = {
         let dados = req.body.current;
         switch (dados.status) {
             case "open":
-                retorno = banco.Db_negocios_insert({
+                retorno = await banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
                     status: dados.status,
