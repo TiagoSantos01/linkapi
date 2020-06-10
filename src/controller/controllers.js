@@ -8,6 +8,7 @@ module.exports = {
 
         switch (dados.status) {
             case "open":
+                console;log("foia")
                 retorno = banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
@@ -15,6 +16,8 @@ module.exports = {
                     value: dados.value,
                     products_count: dados.products_count
                 });
+                console;log("foi b")
+
                 retorno
                     .then((result) => {
                         res.send({ success: true, result: result })
