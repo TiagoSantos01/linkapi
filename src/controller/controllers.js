@@ -16,9 +16,11 @@ module.exports = {
                     products_count: dados.products_count
                 })
                     .then((result) => {
+                        console.log(result)
                         return res.send({ success: true, result: result })
                     })
                     .catch(err => {
+                        console.log(err)
                         return res.send({ success: false, error: err })
                     });
 
@@ -33,9 +35,11 @@ module.exports = {
                 })
                 retorno
                     .then((result) => {
+                                                console.log(result)
                         res.send({ success: true, result: result })
                     })
                     .catch(err => {
+                                                console.log(err)
                         res.send({ success: false, error: err })
                     });
                 break;
