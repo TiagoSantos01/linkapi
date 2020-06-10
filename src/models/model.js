@@ -6,7 +6,7 @@ module.exports = {
         retorno = await banco.collection("negocios").findOne({ id: data.id },(dado)=>{
         console.log(dado);
             if (dado == null)
-            return await banco.collection("negocios").insertOne(data);
+            return  banco.collection("negocios").insertOne(data);
         else
             return Db_negocios_update({ id: data.id }, data)
         });
