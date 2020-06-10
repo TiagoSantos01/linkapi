@@ -18,10 +18,10 @@ module.exports = {
                 });
                 retorno
                     .then((result) => {
-                        req.send({ success: true, result: result })
+                        res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                        req.send({ success: false, error: err })
+                        res.send({ success: false, error: err })
                     });
 
                 break;
