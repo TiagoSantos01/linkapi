@@ -13,13 +13,12 @@ module.exports = {
                     status: dados.status,
                     value: dados.value,
                     products_count: dados.products_count
-                });
-                retorno
+                })
                     .then((result) => {
-                     //  return res.send({ success: true, result: result })
+                      return res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                        //return  res.send({ success: false, error: err })
+                        return  res.send({ success: false, error: err })
                     });
 
                 break;
@@ -42,7 +41,6 @@ module.exports = {
             default:
                 break;
         }
-        return res.send({ status: true });
     },
     async deal_delete(req, res) {
         let dados = req.body.current;
