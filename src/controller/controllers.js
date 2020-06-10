@@ -8,7 +8,7 @@ module.exports = {
         switch (dados.status) {
             case "open":
               
-                await banco.Db_negocios_insert({
+                 banco.Db_negocios_insert({
                     id: dados.id,
                     title: dados.title,
                     status: dados.status,
