@@ -87,6 +87,7 @@ module.exports = {
         let id = req.body.meta.id;
         await banco.Db_produtos_drop({ deal_id: id }).then(async () => {
             await banco.Db_negocios_drop({ id: id }).then(result => {
+                console.log("foi?")
                 res.send({ success: true, result: result })
             }).catch(err => {
                 res.send({ success: false, error: err })
