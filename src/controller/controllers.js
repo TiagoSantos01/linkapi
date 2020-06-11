@@ -70,7 +70,7 @@ module.exports = {
                                 })
                                 retorno
                                     .then(async (result) => {
-                                        await banco.Db_produtos_Drop({id:dados.id})
+                                        await banco.Db_produtos_Drop({deal_id:dados.id})
                                         res.send({ success: true, result: result })
                                     })
                                     .catch(err => {
