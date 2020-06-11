@@ -46,6 +46,7 @@ module.exports = {
                             apikey = '96fe77d3ed131ef9d7f76b02314ea54aaa3468223934d4a7d1a419d6207cb5f65a38cb7d';
 
                         let json = [];
+                        let banco = global.banco;
                         retorno = banco.collection("negocios").findOne({ id: dados.id })
                         banco.collection("produtos").find({ deal_id: dados.id }).toArray(async (err, result) => {
                             itens = [];
@@ -74,11 +75,11 @@ module.exports = {
                             xml = convert.json2xml(json, { compact: true })
                         })
                         request.post(`https://bling.com.br/Api/v2/pedidocompra/json/&apikey=${apikey}&xml=${xml}`, {}, (error, request, result) => {
-                            res.send({ success: true, result: result }) 
+                            res.send({ success: true, result: result })
                         })
 
                     })
-                   
+
                 })
                     .catch(err => {
                         res.send({ success: false, error: err })
