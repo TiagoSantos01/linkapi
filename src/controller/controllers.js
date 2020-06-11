@@ -26,29 +26,27 @@ module.exports = {
             case "updated":
                 switch (dados.status) {
                     case "won":
-                        retorno = banco.Db_negocios_update({ id: dados.id }, {
+                        await banco.Db_negocios_update({ id: dados.id }, {
                             id: dados.id,
                             title: dados.title,
                             status: dados.status,
                             value: dados.value,
                             add_time: dados.add_time,
                             update_time: dados.update_time
-                        })
-                        retorno
-                            .then(async (result) => {
-                                controller = pipe.DealsController;
-                                produtos = controller.listProductsAttachedToADeal({ id: dados.id })
-                                produtos.then(async (result) => {
-                                    await banco.Db_produtos_Insert_List(result.data)
-                                })
-                                res.send({ success: true, result: result })
+                        }).then(async (result) => {
+                            controller = pipe.DealsController;
+                            produtos = controller.listProductsAttachedToADeal({ id: dados.id })
+                            produtos.then(async (result) => {
+                                await banco.Db_produtos_Insert_List(result.data)
                             })
+                            res.send({ success: true, result: result })
+                        })
                             .catch(err => {
                                 res.send({ success: false, error: err })
                             });
                         break;
                     case "lost":
-                        retorno = banco.Db_negocios_update({ id: dados.id }, {
+                        await banco.Db_negocios_update({ id: dados.id }, {
                             id: dados.id,
                             title: dados.title,
                             status: dados.status,
@@ -58,20 +56,8 @@ module.exports = {
                             lost_reason: dados.lost_reason,
                             lost_time: dados.lost_time
                         })
-                        retorno
-                            .then((result) => {
-                                retorno = banco.Db_negocios_update({ id: dados.id }, {
-                                    id: dados.id,
-                                    title: dados.title,
-                                    status: dados.status,
-                                    value: dados.value,
-                                    add_time: dados.add_time,
-                                    update_time: dados.update_time
-                                })
-                                retorno
-                                    .then(async result=> {
-                                         await banco.Db_produtos_Drop({deal_id:dados.id})
-                                    })
+                            .then(async result => {
+                                await banco.Db_produtos_Drop({ deal_id: dados.id });
                                 res.send({ success: true, result: result })
                             })
                             .catch(err => {
