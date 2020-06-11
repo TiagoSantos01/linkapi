@@ -43,6 +43,6 @@ module.exports = {
         let banco = global.banco
         retorno = await banco.collection("negocios").findOne(dados);
         if (retorno)
-            banco.collection("negocios").drop(dados)
+            banco.collection("negocios").update(dados)
     }
 }
