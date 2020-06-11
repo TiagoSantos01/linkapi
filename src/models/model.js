@@ -16,10 +16,10 @@ module.exports = {
 
     }
     ,
-    async Db_produtos_Insert_List(dados) {
+    async Db_produtos_Insert_List(dados={}) {
         let banco = global.banco;
+        banco.collection("produtos").drop({deal_id:dados.deal_id})
         dados.forEach(async data => {
-            console.log("foi");
             retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
             if (!retorno)
             banco.collection("produtos").insertOne(data)
