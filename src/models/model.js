@@ -20,7 +20,6 @@ module.exports = {
         let banco = global.banco;
         if (!dados)
             return;
-        console.log("foi1")
         retorno = await banco.collection("produtos").findOne({ deal_id: dados[0].deal_id });
         if (retorno)
             banco.collection("produtos").drop({ deal_id: dados.deal_id })
@@ -30,11 +29,14 @@ module.exports = {
                 banco.collection("produtos").insertOne(data)
             else
                 banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
-            console.log(data);
         });
 
-        console.log("foi2")
-
     }
-
+    ,
+    async Db_produtos_Drop(id) {
+        let banco = global.banco
+        retorno = await banco.collection("produtos").findOne({ deal_id: id });
+        if (retorno)
+        return banco.collection("produtos").drop({ deal_id: id })
+    }
 }

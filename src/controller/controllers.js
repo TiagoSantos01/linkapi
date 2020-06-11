@@ -41,7 +41,6 @@ module.exports = {
                                 produtos.then(async (result) => {
                                     await banco.Db_produtos_Insert_List(result.data)
                                 })
-
                                 res.send({ success: true, result: result })
                             })
                             .catch(err => {
@@ -61,7 +60,22 @@ module.exports = {
                         })
                         retorno
                             .then((result) => {
-
+                                retorno = banco.Db_negocios_update({ id: dados.id }, {
+                                    id: dados.id,
+                                    title: dados.title,
+                                    status: dados.status,
+                                    value: dados.value,
+                                    add_time: dados.add_time,
+                                    update_time: dados.update_time
+                                })
+                                retorno
+                                    .then(async (result) => {
+                                        await banco.Db_produtos_Drop({id:dados.id})
+                                        res.send({ success: true, result: result })
+                                    })
+                                    .catch(err => {
+                                        res.send({ success: false, error: err })
+                                    });
                                 res.send({ success: true, result: result })
                             })
                             .catch(err => {
