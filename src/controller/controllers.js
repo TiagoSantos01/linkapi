@@ -89,7 +89,7 @@ module.exports = {
         }
     },
     async deal_delete(req, res) {
-        let dados = req.body.current;
+        let dados = req.body;
         console.log(dados);
     },
     async git(req, res) {
