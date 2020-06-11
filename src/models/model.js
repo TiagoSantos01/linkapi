@@ -32,7 +32,7 @@ module.exports = {
             return banco.collection("negocios").update(datawhere, data)
     }
     ,
-    async Db_produtos_Drop(dados) {
+    async Db_produtos_drop(dados) {
         let banco = global.banco
         retorno = await banco.collection("produtos").findOne(dados);
         if (retorno)
