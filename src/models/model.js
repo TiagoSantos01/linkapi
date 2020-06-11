@@ -29,7 +29,7 @@ module.exports = {
                     banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
                 console.log(data);
             });
-        }
+        })
     }
 
 }
