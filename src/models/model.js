@@ -20,15 +20,16 @@ module.exports = {
         let banco = global.banco;
         if (!dados)
             return
-        await banco.collection("produtos").drop({ deal_id: dados.deal_id })
-        dados.forEach(async data => {
-            retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
-            if (!retorno)
-                banco.collection("produtos").insertOne(data)
-            else
-                banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
-            console.log(data);
-        });
+        banco.collection("produtos").drop({ deal_id: dados.deal_id }).then(() => {
+            dados.forEach(async data => {
+                retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
+                if (!retorno)
+                    banco.collection("produtos").insertOne(data)
+                else
+                    banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
+                console.log(data);
+            });
+        }
     }
 
 }
