@@ -21,7 +21,9 @@ module.exports = {
         if (!dados)
             return;
         console.log("foi1")
-      //  banco.collection("produtos").drop({ deal_id: dados.deal_id })
+        retorno = await banco.collection("produtos").findOne({ deal_id: data.deal_id });
+        if (retorno)
+            banco.collection("produtos").drop({ deal_id: dados.deal_id })
         dados.forEach(async data => {
             retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
             if (!retorno)
