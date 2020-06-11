@@ -19,18 +19,18 @@ module.exports = {
     async Db_produtos_Insert_List(dados) {
         let banco = global.banco;
         if (!dados)
-            return
-            console.log("foi1")
-        await banco.collection("produtos").drop({ deal_id: dados.deal_id }).then(() => {
-            dados.forEach(async data => {
-                retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
-                if (!retorno)
-                    banco.collection("produtos").insertOne(data)
-                else
-                    banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
-                console.log(data);
-            });
+            return;
+        console.log("foi1")
+      //  banco.collection("produtos").drop({ deal_id: dados.deal_id })
+        dados.forEach(async data => {
+            retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
+            if (!retorno)
+                banco.collection("produtos").insertOne(data)
+            else
+                banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
+            console.log(data);
         });
+
         console.log("foi2")
 
     }
