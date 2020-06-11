@@ -20,7 +20,7 @@ module.exports = {
         let banco = global.banco;
         if (!dados)
             return
-        banco.collection("produtos").drop({ deal_id: dados.deal_id }).then(() => {
+        await banco.collection("produtos").drop({ deal_id: dados.deal_id }).then(() => {
             dados.forEach(async data => {
                 retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
                 if (!retorno)
