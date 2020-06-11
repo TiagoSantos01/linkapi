@@ -8,14 +8,6 @@ module.exports = {
             return banco.collection("negocios").insertOne(data);
 
     },
-    async Db_negocios_update(datawhere, data) {
-        let banco = global.banco;
-        retorno = await banco.collection("negocios").findOne(datawhere)
-        if (retorno)
-            return banco.collection("negocios").update(datawhere, data)
-
-    }
-    ,
     async Db_produtos_Insert_List(dados) {
         let banco = global.banco;
         if (!dados)
@@ -33,10 +25,24 @@ module.exports = {
 
     }
     ,
+    async Db_negocios_update(datawhere, data) {
+        let banco = global.banco;
+        retorno = await banco.collection("negocios").findOne(datawhere)
+        if (retorno)
+            return banco.collection("negocios").update(datawhere, data)
+    }
+    ,
     async Db_produtos_Drop(dados) {
         let banco = global.banco
         retorno = await banco.collection("produtos").findOne(dados);
         if (retorno)
             banco.collection("produtos").drop(dados)
+    }
+    ,
+    async  Db_negocios_drop(dados) {
+        let banco = global.banco
+        retorno = await banco.collection("negocios").findOne(dados);
+        if (retorno)
+            banco.collection("negocios").drop(dados)
     }
 }

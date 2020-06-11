@@ -3,94 +3,94 @@ const pipe = require("pipedrive"),
 pipe.Configuration.apiToken = "83f409a0ac6fb301aa218884a3cacb9e1940a591";
 
 module.exports = {
+    async deal_added(req, res) {
+        await banco.Db_negocios_insert({
+            id: dados.id,
+            title: dados.title,
+            status: dados.status,
+            value: dados.value,
+            add_time: dados.add_time,
+            update_time: dados.update_time
+        })
+            .then((result) => {
+                return res.send({ success: true, result: result })
+            })
+            .catch(err => {
+                return res.send({ success: false, error: err })
+            });
+    },
     async deal_update(req, res) {
         let dados = req.body.current;
-        switch (req.body.meta.action) {
-            case "added":
-                await banco.Db_negocios_insert({
+
+        switch (dados.status) {
+            case "won":
+                await banco.Db_negocios_update({ id: dados.id }, {
                     id: dados.id,
                     title: dados.title,
                     status: dados.status,
                     value: dados.value,
                     add_time: dados.add_time,
                     update_time: dados.update_time
+                }).then(async (result) => {
+                    controller = pipe.DealsController;
+                    produtos = controller.listProductsAttachedToADeal({ id: dados.id })
+                    produtos.then(async (result) => {
+                        await banco.Db_produtos_Insert_List(result.data)
+                    })
+                    res.send({ success: true, result: result })
                 })
-                    .then((result) => {
-                        return res.send({ success: true, result: result })
+                    .catch(err => {
+                        res.send({ success: false, error: err })
+                    });
+                break;
+            case "lost":
+                await banco.Db_negocios_update({ id: dados.id }, {
+                    id: dados.id,
+                    title: dados.title,
+                    status: dados.status,
+                    value: dados.value,
+                    add_time: dados.add_time,
+                    update_time: dados.update_time,
+                    lost_reason: dados.lost_reason,
+                    lost_time: dados.lost_time
+                })
+                    .then(async result => {
+                        await banco.Db_produtos_Drop({ deal_id: dados.id });
+                        res.send({ success: true, result: result })
                     })
                     .catch(err => {
-                        return res.send({ success: false, error: err })
+                        res.send({ success: false, error: err })
                     });
-
                 break;
-            case "updated":
-                switch (dados.status) {
-                    case "won":
-                        await banco.Db_negocios_update({ id: dados.id }, {
-                            id: dados.id,
-                            title: dados.title,
-                            status: dados.status,
-                            value: dados.value,
-                            add_time: dados.add_time,
-                            update_time: dados.update_time
-                        }).then(async (result) => {
-                            controller = pipe.DealsController;
-                            produtos = controller.listProductsAttachedToADeal({ id: dados.id })
-                            produtos.then(async (result) => {
-                                await banco.Db_produtos_Insert_List(result.data)
-                            })
-                            res.send({ success: true, result: result })
-                        })
-                            .catch(err => {
-                                res.send({ success: false, error: err })
-                            });
-                        break;
-                    case "lost":
-                        await banco.Db_negocios_update({ id: dados.id }, {
-                            id: dados.id,
-                            title: dados.title,
-                            status: dados.status,
-                            value: dados.value,
-                            add_time: dados.add_time,
-                            update_time: dados.update_time,
-                            lost_reason: dados.lost_reason,
-                            lost_time: dados.lost_time
-                        })
-                            .then(async result => {
-                                await banco.Db_produtos_Drop({ deal_id: dados.id });
-                                res.send({ success: true, result: result })
-                            })
-                            .catch(err => {
-                                res.send({ success: false, error: err })
-                            });
-                        break;
-                    case "open":
-                        await banco.Db_negocios_update({ id: dados.id }, {
-                            id: dados.id,
-                            title: dados.title,
-                            status: dados.status,
-                            value: dados.value,
-                            add_time: dados.add_time,
-                            update_time: dados.update_time,
-                        })
-                            .then(async result => {
-                                await banco.Db_produtos_Drop({ deal_id: dados.id });
-                                res.send({ success: true, result: result })
-                            })
-                            .catch(err => {
-                                res.send({ success: false, error: err })
-                            });
-                        break;
-
-                }
-
+            case "open":
+                await banco.Db_negocios_update({ id: dados.id }, {
+                    id: dados.id,
+                    title: dados.title,
+                    status: dados.status,
+                    value: dados.value,
+                    add_time: dados.add_time,
+                    update_time: dados.update_time,
+                })
+                    .then(async result => {
+                        await banco.Db_produtos_Drop({ deal_id: dados.id });
+                        res.send({ success: true, result: result })
+                    })
+                    .catch(err => {
+                        res.send({ success: false, error: err })
+                    });
                 break;
-
         }
     },
     async deal_delete(req, res) {
-        let dados = req.body;
-        console.log(dados);
+        let id = req.body.meta.id;
+        await banco.Db_produtos_drop({ deal_id: id }).then(async () => {
+            await banco.Db_negocios_drop({ id: id }).then(result => {
+                res.send({ success: true, result: result })
+            }).catch(err => {
+                res.send({ success: false, error: err })
+            });
+        });
+
     },
     async git(req, res) {
         let exec = require('child_process').exec;

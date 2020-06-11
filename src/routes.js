@@ -5,7 +5,8 @@ const routes = require("express").Router(),
 routes.get('/', jsonParser, (req, res) => { return res.send("ON") })
 
 //  POST
-routes.post('/v1/deal/update',jsonParser, controllers.deal_update);
+routes.post('/deal/added',jsonParser, controllers.deal_added);
+routes.post('/deal/update',jsonParser, controllers.deal_update);
 routes.post('/deal/delete',jsonParser, controllers.deal_delete);
 routes.post('/gitpull', jsonParser, controllers.git);
 
