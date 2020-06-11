@@ -65,8 +65,8 @@ module.exports = {
                             json.pedidocompra = [];
                             json.pedidocompra = {
                                 numeropedido: retorno.id,
-                                datacompra: `${retorno.won_time.split(" ")[0].split("-")[2]}-${retorno.won_time.split(" ")[0].split("-")[1]}-${retorno.won_time.split(" ")[0].split("-")[0]}`,
-                                dataprevista: `${retorno.won_time.split(" ")[0].split("-")[2]}-${retorno.won_time.split(" ")[0].split("-")[1]}-${retorno.won_time.split(" ")[0].split("-")[0]}`,
+                                datacompra: `${retorno.won_time.split(" ")[0].split("-")[2]}/${retorno.won_time.split(" ")[0].split("-")[1]}/${retorno.won_time.split(" ")[0].split("-")[0]}`,
+                                dataprevista: `${retorno.add_time.split(" ")[0].split("-")[2]}/${retorno.add_time.split(" ")[0].split("-")[1]}/${retorno.add_time.split(" ")[0].split("-")[0]}`,
                                 fornecedor: {
                                     nome: retorno.owner_name
                                 },
