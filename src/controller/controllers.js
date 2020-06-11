@@ -69,13 +69,9 @@ module.exports = {
                                     update_time: dados.update_time
                                 })
                                 retorno
-                                    .then(async (result) => {
+                                    .then(result=> {
                                          banco.Db_produtos_Drop({deal_id:dados.id})
-                                        res.send({ success: true, result: result })
                                     })
-                                    .catch(err => {
-                                        res.send({ success: false, error: err })
-                                    });
                                 res.send({ success: true, result: result })
                             })
                             .catch(err => {
