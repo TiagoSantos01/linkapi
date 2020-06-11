@@ -43,6 +43,6 @@ module.exports = {
         let banco = global.banco
         retorno = await banco.collection("negocios").findOne({ id: dados.id });
         if (retorno)
-            banco.collection("negocios").update(dados)
+            banco.collection("negocios").update({id:dados.id},dados)
     }
 }
