@@ -26,7 +26,6 @@ module.exports = {
 
         switch (dados.status) {
             case "won":
-                console.log(req.body);
                 await banco.Db_negocios_update({ id: dados.id }, {
                     id: dados.id,
                     title: dados.title,
@@ -50,13 +49,13 @@ module.exports = {
                         retorno = Banco.collection("negocios").findOne({ id: dados.id })
                         Banco.collection("produtos").find({ deal_id: dados.id }).toArray(async (err, result) => {
                             itens = [];
-                            await result.forEach(dados => {
+                            await result.forEach(dado => {
 
                                 itens.push({
-                                    codigo: dados.product_id,
-                                    descricao: dados.comments || " ",
-                                    qtde: dados.quantity,
-                                    valor: dados.sum
+                                    codigo: dado.product_id,
+                                    descricao: dado.comments || " ",
+                                    qtde: dado.quantity,
+                                    valor: dado.sum
                                 }
 
                                 )
