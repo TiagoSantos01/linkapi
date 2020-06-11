@@ -65,16 +65,16 @@ module.exports = {
                             json.pedidocompra = [];
                             json.pedidocompra = {
                                 numeropedido: retorno.id,
-                                datacompra: retorno.won_time,
-                                dataprevista: retorno.add_time,
+                                datacompra: `${retorno.won_time.split(" ")[0].split("-")[2]}-${retorno.won_time.split(" ")[0].split("-")[1]}-${retorno.won_time.split(" ")[0].split("-")[0]}`,
+                                dataprevista: `${retorno.won_time.split(" ")[0].split("-")[2]}-${retorno.won_time.split(" ")[0].split("-")[1]}-${retorno.won_time.split(" ")[0].split("-")[0]}`,
                                 fornecedor: {
                                     nome: retorno.owner_name
                                 },
                                 itens: item
                             }
                             xml = convert.json2xml(json, { compact: true })
-                             request.post(`https://bling.com.br/Api/v2/pedidocompra/json/&apikey=${apikey}&xml=${xml}`, {}, (error, request, result) => {
-                                 console.log(error, request, result)
+                            request.post(`https://bling.com.br/Api/v2/pedidocompra/json/&apikey=${apikey}&xml=${xml}`, {}, (error, request, result) => {
+                                console.log(error, request, result)
                                 res.send({ success: true, result: result })
                             })
                         })
