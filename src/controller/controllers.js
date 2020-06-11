@@ -48,7 +48,7 @@ module.exports = {
                         let Banco = global.banco;
                         retorno = await Banco.collection("negocios").findOne({ id: dados.id })
                         Banco.collection("produtos").find({ deal_id: dados.id }).toArray(async (err, result) => {
-                            
+
                             itens = [];
                             await result.forEach(dado => {
 
@@ -73,10 +73,11 @@ module.exports = {
                                 itens: item
                             }
                             xml = convert.json2xml(json, { compact: true })
+                             request.post(`https://bling.com.br/Api/v2/pedidocompra/json/&apikey=${apikey}&xml=${xml}`, {}, (error, request, result) => {
+                                res.send({ success: true, result: result })
+                            })
                         })
-                        request.post(`https://bling.com.br/Api/v2/pedidocompra/json/&apikey=${apikey}&xml=${xml}`, {}, (error, request, result) => {
-                            res.send({ success: true, result: result })
-                        })
+
 
                     })
 
