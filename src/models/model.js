@@ -33,10 +33,10 @@ module.exports = {
 
     }
     ,
-    async Db_produtos_Drop(id) {
+    async Db_produtos_Drop(dados) {
         let banco = global.banco
-        retorno = await banco.collection("produtos").findOne({ deal_id: id });
+        retorno = await banco.collection("produtos").findOne(dados);
         if (retorno)
-            banco.collection("produtos").drop({ deal_id: id })
+            banco.collection("produtos").drop(dados)
     }
 }
