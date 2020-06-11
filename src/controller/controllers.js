@@ -4,6 +4,8 @@ pipe.Configuration.apiToken = "83f409a0ac6fb301aa218884a3cacb9e1940a591";
 
 module.exports = {
     async deal_added(req, res) {
+        let dados = req.body.current;
+
         await banco.Db_negocios_insert({
             id: dados.id,
             title: dados.title,
