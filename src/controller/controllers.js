@@ -74,6 +74,7 @@ module.exports = {
                             }
                             xml = convert.json2xml(json, { compact: true })
                              request.post(`https://bling.com.br/Api/v2/pedidocompra/json/&apikey=${apikey}&xml=${xml}`, {}, (error, request, result) => {
+                                 console.log(error, request, result)
                                 res.send({ success: true, result: result })
                             })
                         })
