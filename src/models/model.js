@@ -41,7 +41,7 @@ module.exports = {
     ,
     async  Db_negocios_drop(dados) {
         let banco = global.banco
-        retorno = await banco.collection("negocios").findOne(dados);
+        retorno = await banco.collection("negocios").findOne({ id: dados.id });
         if (retorno)
             banco.collection("negocios").update(dados)
     }
