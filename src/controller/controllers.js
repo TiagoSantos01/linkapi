@@ -65,16 +65,27 @@ module.exports = {
                             });
                         break;
                     case "open":
-
+                        await banco.Db_negocios_update({ id: dados.id }, {
+                            id: dados.id,
+                            title: dados.title,
+                            status: dados.status,
+                            value: dados.value,
+                            add_time: dados.add_time,
+                            update_time: dados.update_time,
+                        })
+                            .then(async result => {
+                                await banco.Db_produtos_Drop({ deal_id: dados.id });
+                                res.send({ success: true, result: result })
+                            })
+                            .catch(err => {
+                                res.send({ success: false, error: err })
+                            });
                         break;
 
-                    default:
-                        break;
                 }
 
                 break;
-            default:
-                break;
+
         }
     },
     async deal_delete(req, res) {
