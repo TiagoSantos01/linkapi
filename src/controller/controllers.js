@@ -46,8 +46,9 @@ module.exports = {
 
                         let json = [];
                         let Banco = global.banco;
-                        retorno = Banco.collection("negocios").findOne({ id: dados.id })
+                        retorno = await Banco.collection("negocios").findOne({ id: dados.id })
                         Banco.collection("produtos").find({ deal_id: dados.id }).toArray(async (err, result) => {
+                            
                             itens = [];
                             await result.forEach(dado => {
 
