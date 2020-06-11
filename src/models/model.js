@@ -20,6 +20,7 @@ module.exports = {
         let banco = global.banco;
         if (!dados)
             return
+            console.log("foi1")
         await banco.collection("produtos").drop({ deal_id: dados.deal_id }).then(() => {
             dados.forEach(async data => {
                 retorno = await banco.collection("produtos").findOne({ id: data.id, deal_id: data.deal_id });
@@ -29,7 +30,9 @@ module.exports = {
                     banco.collection("produtos").update({ id: data.id, deal_id: data.deal_id }, data);
                 console.log(data);
             });
-        })
+        });
+        console.log("foi2")
+
     }
 
 }
