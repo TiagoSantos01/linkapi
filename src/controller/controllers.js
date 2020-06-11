@@ -85,7 +85,11 @@ module.exports = {
     },
     async deal_delete(req, res) {
         let id = req.body.meta.id;
+        console.log("foi")
+
         await banco.Db_produtos_drop({ deal_id: id }).then(async () => {
+            console.log("foi1")
+
             await banco.Db_negocios_drop({ id: id }).then(result => {
                 console.log("foi?")
                 res.send({ success: true, result: result })
