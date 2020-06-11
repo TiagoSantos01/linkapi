@@ -26,6 +26,7 @@ module.exports = {
 
         switch (dados.status) {
             case "won":
+                console.log("req.body");
                 await banco.Db_negocios_update({ id: dados.id }, {
                     id: dados.id,
                     title: dados.title,
