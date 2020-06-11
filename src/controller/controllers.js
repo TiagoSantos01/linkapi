@@ -69,7 +69,7 @@ module.exports = {
                                     update_time: dados.update_time
                                 })
                                 retorno
-                                    .then(result=> {
+                                    .then(async result=> {
                                          await banco.Db_produtos_Drop({deal_id:dados.id})
                                     })
                                 res.send({ success: true, result: result })
